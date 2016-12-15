@@ -1,6 +1,7 @@
 package jp.techacademy.hirotoshi.yoshioka.calcapp;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -41,8 +42,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        double v1 = Double.parseDouble(mEditText1.getText().toString());
-        double v2 = Double.parseDouble(mEditText2.getText().toString());
+
+        String text1 = mEditText1.getText().toString();
+        String text2 = mEditText2.getText().toString();
+
+        if (text1.equals("") | text2.equals("") ){
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("エラー");
+            builder.setMessage("数字を入力して下さい！");
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return;
+        }
+
+        double v1 = Double.parseDouble(text1);
+        double v2 = Double.parseDouble(text2);
 
         String operator = null;
 
